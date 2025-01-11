@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: knd
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  spring_app:
+    build: .
+    container_name: spring_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/knd
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: senha
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge

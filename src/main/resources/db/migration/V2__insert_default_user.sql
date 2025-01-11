@@ -1,0 +1,2 @@
+insert into users (nome, password, description, cargo, email, date, admin)
+	VALUES ('Ivan teste', '$2a$10$ZQSktr6szrd68FeMIBXaEOh69ZQLgvq3B1J466la7nmnGyJ0nPJhi', 'Ivanildo Felix', 'Analista', 'ivanildo.felix@casal.al.gov.br', '2024-08-13 00:00:00',  '0')
