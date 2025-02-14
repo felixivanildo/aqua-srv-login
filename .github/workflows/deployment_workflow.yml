@@ -1,0 +1,26 @@
+name: aqua srv login main workflow
+on: workflow_dispatch
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get to the repo
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribuition: 'adopt'
+
+      - name: Package code into Jar
+        run: mvn clean package -DsKipTests
+
+      - name: Try to build
+        uses: actions/upload-artifact@v3
+        with:
+          name: spring-app
+          path: target/api-0.0.1-SNAPSHOT.jar
+
+        
+
