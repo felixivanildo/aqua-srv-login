@@ -11,7 +11,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
-          distribuition: 'adopt'
+         # distribuition: 'adopt'
 
       - name: Package code into Jar
         run: mvn clean package -DsKipTests
