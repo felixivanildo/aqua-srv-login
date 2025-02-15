@@ -3,20 +3,24 @@ on:
   workflow_dispatch:
     inputs:
       enable_dockerPrepare:
+        type: boolean
         description: 'Habilitar Build DockerPrepare'
         required: false
         default: 'false'
       enable_pullDockerImage:
+        type: boolean
         description: 'Habilitar pull do Docker Image'
         required: false
         default: 'false'
       enable_deployOnCloud:
+        type: boolean
         description: 'Habilitar deploy no VPS'
         required: false
         default: 'false'
 
 jobs:
   dockerPrepare:
+    if: github.event.inputs.enable_dockerPrepare == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -38,6 +42,7 @@ jobs:
           path: target/api-0.0.1-SNAPSHOT.jar
 
   pullDockerImage:
+    if: github.event.inputs.enable_pullDockerImage == true
     runs-on: ubuntu-latest
     needs: dockerPrepare  # Ensures this job runs AFTER dockerPrepare
     steps:
@@ -63,6 +68,7 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/aqua-one-login:latest
   deployOnCloud:
+    if: github.event.inputs.enable_deployOnCloud == true
     runs-on: ubuntu-latest
     needs: pullDockerImage
 
