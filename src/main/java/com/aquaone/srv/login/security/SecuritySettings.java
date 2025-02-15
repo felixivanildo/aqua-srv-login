@@ -37,7 +37,7 @@ public class SecuritySettings {
                         // .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ROLE_ADMIN")   
                         // .requestMatchers(HttpMethod.POST, "/images/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()    // Allow API GET requests
-                        .requestMatchers(HttpMethod.GET, "/tests/**").permitAll()     // Allow tests GET requests
+                        .requestMatchers(HttpMethod.GET, "/tests/**").permitAll()     // Allow tests GET requests                        
                         .anyRequest().authenticated()                                // Require authentication for other routes
                 ).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
