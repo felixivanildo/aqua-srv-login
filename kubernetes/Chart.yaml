@@ -1,0 +1,4 @@
+apiVersion: v2
+name: aqua-srv-login
+description: this is a certified api
+version: 1.0.4
