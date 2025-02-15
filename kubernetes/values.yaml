@@ -1,0 +1,26 @@
+microservice:
+  name: aqua-srv-login
+  namespace: aqua-one-test-domain
+  replicas: 2
+
+
+workload:
+  image: ivanflxfelix/aqua-one-login:latest
+  port: 8080
+  resources:
+    memory: "500Mi"
+    cpu: "500m"
+  limits:
+    memory: "600Mi"
+  livenessDelay: 15
+
+env:
+  DB_PORT: '5432'
+  DB_HOST: aqua-postgres-db-postgres
+  DB_NAME: aqua
+  POSTGRES_NAMESPACE: aqua-one-test-domain
+
+
+secrets:
+  POSTGRES_USER: 'cG9zdGdyZXM='
+  POSTGRES_PASSWORD: 'c2VuaGE='

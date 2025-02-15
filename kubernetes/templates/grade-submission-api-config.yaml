@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.microservice.name}}-configmap
+  namespace: {{.Values.microservice.namespace}}
+data:
+  DB_PORT: '5432'
+  DB_HOST: aqua-postgres-db-postgres
+  DB_NAME: aqua
+  POSTGRES_NAMESPACE: aqua-one-test-domain
+    
+
+
