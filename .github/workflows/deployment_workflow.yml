@@ -66,9 +66,9 @@ jobs:
 
       - name: Copiando arquivos para servidos
         run: |
-          scp -r ./kubernetes ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/k8s/login-srv
+          scp -r ./kubernetes ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/root/github/aqua-srv-login
 
       - name: Executando Helm
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /home/k8s/login-srv && helm package . "
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /github/aqua-srv-login && helm package . "
 
