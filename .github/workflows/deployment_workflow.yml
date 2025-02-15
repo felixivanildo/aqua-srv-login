@@ -1,5 +1,19 @@
 name: aqua srv login main workflow
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      enable_dockerPrepare:
+        description: 'Habilitar Build DockerPrepare'
+        required: false
+        default: 'false'
+      enable_pullDockerImage:
+        description: 'Habilitar pull do Docker Image'
+        required: false
+        default: 'false'
+      enable_deployOnCloud:
+        description: 'Habilitar deploy no VPS'
+        required: false
+        default: 'false'
 
 jobs:
   dockerPrepare:
