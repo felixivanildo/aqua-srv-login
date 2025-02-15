@@ -62,11 +62,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Copiando arquivos para servidos
-        run: |
-          scp -r ./kubernetes ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/root/github/aqua-srv-login
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts     
 
       - name: Executando Helm
         run: |
