@@ -61,6 +61,10 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_HOST }} > ~/.ssh/known_hosts
 
+      - name: echo directory
+        run: |
+          pwd
+
       - name: Executando Helm
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /github/aqua-srv-login && helm package . "
