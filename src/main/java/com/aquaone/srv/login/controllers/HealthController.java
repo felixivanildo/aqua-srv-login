@@ -13,7 +13,7 @@ public class HealthController {
 
     @GetMapping
     public ResponseEntity<?> healtEndpoint (){
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("All seted up");
     }
     
 }
