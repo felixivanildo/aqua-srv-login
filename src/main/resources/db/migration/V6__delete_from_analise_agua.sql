@@ -1,0 +1,1 @@
+delete from analise_agua
