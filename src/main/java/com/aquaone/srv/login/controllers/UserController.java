@@ -70,7 +70,7 @@ public class UserController {
     @PutMapping()
     public ResponseEntity updateUser(@RequestBody UserUpdateDTO data) {
         
-        final UUID id = UUID.fromString(data.userId());
+        final UUID id = UUID.fromString(data.id());
         
         User updatUser = userService.updateUsr(id, data);
 
