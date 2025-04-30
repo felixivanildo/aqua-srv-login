@@ -2,7 +2,8 @@ package com.aquaone.srv.login.domain.user;
 
 public enum UserRole {
     ADMIN("admin"),
-    USER("user");
+    USER("user"),
+    ANALISTA("analista");
 
 
     private String role;

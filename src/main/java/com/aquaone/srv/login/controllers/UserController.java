@@ -59,9 +59,8 @@ public class UserController {
 
     @GetMapping("/{data}")
     public ResponseEntity<UserDetails> listByID(@PathVariable String data) {
-        final UUID id = UUID.fromString(data);
-       
-
+        final UUID id = UUID.fromString(data);       
+        
         UserDetails users =  userService.findUserById(id);
         return ResponseEntity.ok(users);
     }
