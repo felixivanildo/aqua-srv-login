@@ -15,10 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -29,7 +26,7 @@ public class UserController {
     private UserService userService;
     
 
-    @PostMapping("/inserir")
+    @PostMapping()
     public ResponseEntity<Map<String, Object>> create(@RequestBody UserRequestDTO data) {
         List<User> users = userService.listUser();
  
@@ -50,16 +47,19 @@ public class UserController {
     }
 
 
-    @GetMapping("/consultar")
+    @GetMapping()
     public ResponseEntity<List<User>> listAllUsers() {
-        List<User> users = userService.listUser();
+        List<User> users = userService.listUser()
+        .stream()
+        .peek(user -> user.setPassword(null))
+        .collect(Collectors.toList());
         return ResponseEntity.ok(users);
     }
 
 
-    @PostMapping("/consultar/id")
-    public ResponseEntity<UserDetails> listByID(@RequestBody UserFindDTO data) {
-        final UUID id = UUID.fromString(data.Id());
+    @GetMapping("/{data}")
+    public ResponseEntity<UserDetails> listByID(@PathVariable String data) {
+        final UUID id = UUID.fromString(data);
        
 
         UserDetails users =  userService.findUserById(id);
@@ -68,10 +68,10 @@ public class UserController {
 
 
 
-    @PutMapping("/atualizar")
+    @PutMapping()
     public ResponseEntity updateUser(@RequestBody UserUpdateDTO data) {
         
-        final UUID id = UUID.fromString(data.Id());
+        final UUID id = UUID.fromString(data.userId());
         
         User updatUser = userService.updateUsr(id, data);
 
@@ -79,9 +79,9 @@ public class UserController {
     }
 
 
-    @PutMapping("/deletar")
-    public ResponseEntity putMethodName(@RequestBody UserUpdateDTO data) {
-        final UUID id = UUID.fromString(data.Id());
+    @DeleteMapping("/{id}")
+    public ResponseEntity putMethodName(@PathVariable String data) {
+        final UUID id = UUID.fromString(data);
 
 
         userService.deleteUserById(id);
