@@ -53,7 +53,7 @@ public class UserService {
         existiUser.setDescription(data.description());
         existiUser.setAdmin(data.admin());
         existiUser.setEmail(data.email());
-        existiUser.setPassword(passwordEncoder.encode((data.password())));
+        existiUser.setPassword(data.password().length() > 0 ? passwordEncoder.encode((data.password())) : existiUser.getPassword());
         
         return userRepository.save(existiUser);
     }
