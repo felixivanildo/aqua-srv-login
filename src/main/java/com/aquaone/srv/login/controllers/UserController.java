@@ -74,6 +74,8 @@ public class UserController {
         
         User updatUser = userService.updateUsr(id, data);
 
+        updatUser.setPassword(null);
+
         return ResponseEntity.ok(updatUser);
     }
 
