@@ -80,7 +80,7 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{data}")
     public ResponseEntity putMethodName(@PathVariable String data) {
         final UUID id = UUID.fromString(data);
 
