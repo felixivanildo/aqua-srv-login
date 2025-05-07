@@ -42,6 +42,8 @@ public class User implements  UserDetails{
     private String email;
     private LocalDate date;
     private UserRole admin;
+    @Column(nullable = true, name = "ic_uso")
+    private Boolean icUso;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

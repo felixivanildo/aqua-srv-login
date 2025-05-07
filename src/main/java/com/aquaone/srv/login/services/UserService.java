@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -76,7 +77,16 @@ public class UserService {
 
     @Transactional
     public void deleteUserById(UUID id){
-        userRepository.deleteById(id);
+        Optional<User> existUser = userRepository.findById(id);
+
+        if (existUser.isPresent()) {
+            User currentUser = existUser.get();
+            currentUser.setIcUso(false);
+            userRepository.save(currentUser);
+        }else{
+            throw new RuntimeException("Usuário não encontrado");
+        }
+       
     }
  
 }
